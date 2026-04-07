@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:server": "tsc --project tsconfig.server.json",
+    "build:server": "cd server && npm install && npm run build",
+    "build:vercel": "npm run build && npm run build:server",
     "lint": "eslint .",
     "preview": "vite preview"
   },

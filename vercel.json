@@ -9,30 +9,14 @@
       }
     },
     {
-      "src": "api/**/*.ts",
+      "src": "server/package.json",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/auth/(.*)",
-      "dest": "/api/auth.ts"
-    },
-    {
-      "src": "/api/courses/(.*)",
-      "dest": "/api/courses.ts"
-    },
-    {
-      "src": "/api/assignments/(.*)",
-      "dest": "/api/assignments.ts"
-    },
-    {
-      "src": "/api/quizzes/(.*)",
-      "dest": "/api/quizzes.ts"
-    },
-    {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "dest": "server/src/index.ts"
     },
     {
       "handle": "filesystem"
