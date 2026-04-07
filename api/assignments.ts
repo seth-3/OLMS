@@ -1,8 +1,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import Assignment from '../../server/src/models/Assignment';
-import Submission from '../../server/src/models/Submission';
-import { connectDB } from '../../server/src/utils/db';
-import { authenticateToken } from '../../server/src/middleware/auth';
+import Assignment from './models/Assignment';
+import Submission from './models/Submission';
+import { connectDB } from './utils/db';
+import { authenticateToken } from './utils/auth';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {

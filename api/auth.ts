@@ -1,7 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import User from '../../server/src/models/User';
-import { generateToken, hashPassword, comparePassword } from '../../server/src/utils/jwt';
-import { connectDB } from '../../server/src/utils/db';
+import User from './models/User';
+import * as jwtUtils from './utils/jwt';
+import { connectDB } from './utils/db';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -24,12 +24,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
-      const isPasswordValid = await comparePassword(password, user.password);
+      const isPasswordValid = await jwtUtils.comparePassword(password, user.password);
       if (!isPasswordValid) {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
-      const token = generateToken(user._id.toString(), user.role);
+      const token = jwtUtils.generateToken(user._id.toString(), user.role);
 
       return res.json({
         token,
@@ -54,7 +54,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(409).json({ message: 'Email already in use' });
       }
 
-      const hashedPassword = await hashPassword(password);
+      const hashedPassword = await jwtUtils.hashPassword(password);
 
       const user = new User({
         name,
@@ -66,7 +66,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       await user.save();
 
-      const token = generateToken(user._id.toString(), user.role);
+      const token = jwtUtils.generateToken(user._id.toString(), user.role);
 
       return res.status(201).json({
         token,

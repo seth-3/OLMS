@@ -1,8 +1,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import Quiz from '../../server/src/models/Quiz';
-import QuizAttempt from '../../server/src/models/QuizAttempt';
-import { connectDB } from '../../server/src/utils/db';
-import { authenticateToken } from '../../server/src/middleware/auth';
+import Quiz from './models/Quiz';
+import QuizAttempt from './models/QuizAttempt';
+import { connectDB } from './utils/db';
+import { authenticateToken } from './utils/auth';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {

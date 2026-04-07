@@ -1,9 +1,9 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import Course from '../../server/src/models/Course';
-import Module from '../../server/src/models/Module';
-import LearningMaterial from '../../server/src/models/LearningMaterial';
-import { connectDB } from '../../server/src/utils/db';
-import { authenticateToken } from '../../server/src/middleware/auth';
+import Course from './models/Course';
+import Module from './models/Module';
+import LearningMaterial from './models/LearningMaterial';
+import { connectDB } from './utils/db';
+import { authenticateToken } from './utils/auth';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
