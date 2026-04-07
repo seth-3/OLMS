@@ -1,9 +1,17 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { VercelRequest } from '@vercel/node';
 
 export interface AuthRequest extends Request {
   userId?: string;
   userRole?: string;
+}
+
+export interface AuthResult {
+  success: boolean;
+  userId?: string;
+  userRole?: string;
+  message?: string;
 }
 
 export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
@@ -30,4 +38,24 @@ export const authorize = (roles: string[]) => {
     }
     next();
   };
+};
+
+export const authenticateToken = async (req: VercelRequest): Promise<AuthResult> => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
+
+  if (!token) {
+    return { success: false, message: 'No token provided' };
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string; role: string };
+    return {
+      success: true,
+      userId: decoded.userId,
+      userRole: decoded.role
+    };
+  } catch {
+    return { success: false, message: 'Invalid token' };
+  }
 };

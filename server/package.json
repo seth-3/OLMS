@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
+    "postbuild": "cd .. && npm run build && cd server && npx cpy-cli ../dist/** client --flat",
     "start": "node dist/index.js"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@types/express": "^4.17.20",
     "@types/jsonwebtoken": "^9.0.4",
     "@types/node": "^20.6.0",
+    "cpy-cli": "^7.0.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"

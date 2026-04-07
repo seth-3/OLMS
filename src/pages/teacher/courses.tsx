@@ -14,7 +14,6 @@ export const TeacherCourses: React.FC = () => {
   const handleCreate = () => {
     if (newCourseName.trim()) {
       createCourse({
-        id: `c-${Date.now()}`,
         teacherId: 't-1',
         name: newCourseName,
         description: newCourseDesc,

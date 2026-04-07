@@ -14,9 +14,9 @@ export const Assignments: React.FC = () => {
 
   const handleUploadSubmit = () => {
     if (file) {
-      submitAssignment({
-        id: `sub-${Date.now()}`,
-        assignmentId: assignments[0]?.id || 'a-1',
+      const assignmentId = assignments[0]?.id || 'a-1';
+      submitAssignment(assignmentId, {
+        assignmentId,
         studentId: 'u-1',
         status: navigator.onLine ? 'synced' : 'submitted', // submitted means syncing...
         submittedDate: new Date().toISOString(),

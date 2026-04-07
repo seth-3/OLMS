@@ -15,7 +15,6 @@ export const TeacherAssignments: React.FC = () => {
 
   const handleCreate = () => {
     createAssignment({
-      id: `a-${Date.now()}`,
       courseId: selectedCourse,
       title,
       description: desc,
