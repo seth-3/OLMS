@@ -30,13 +30,13 @@ app.use('/api', assignmentRoutes);
 app.use('/api', quizRoutes);
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (req: express.Request, res: express.Response) => {
   res.json({ status: 'OK' });
 });
 
 // Catch all handler: send back React's index.html file for client-side routing
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
+  app.get('*', (req: express.Request, res: express.Response) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
   });
 }
