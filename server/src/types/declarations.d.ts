@@ -18,16 +18,36 @@ declare module 'express' {
   
   export interface Application {
     use(middleware: any): void;
-    get(path: string, handler: (req: Request, res: Response) => void): void;
-    post(path: string, handler: (req: Request, res: Response) => void): void;
-    put(path: string, handler: (req: Request, res: Response) => void): void;
-    delete(path: string, handler: (req: Request, res: Response) => void): void;
+    use(path: string, middleware: any): void;
+    get(path: string, ...handlers: any[]): void;
+    post(path: string, ...handlers: any[]): void;
+    put(path: string, ...handlers: any[]): void;
+    delete(path: string, ...handlers: any[]): void;
     listen(port: number, callback?: () => void): void;
     static(path: string): void;
   }
   
-  const express: () => Application;
-  export = express;
+  export interface Router {
+    use(middleware: any): void;
+    get(path: string, ...handlers: any[]): void;
+    post(path: string, ...handlers: any[]): void;
+    put(path: string, ...handlers: any[]): void;
+    delete(path: string, ...handlers: any[]): void;
+  }
+  
+  interface Express {
+    (): Application;
+    json(options?: any): any;
+    urlencoded(options?: any): any;
+    static(path: string): any;
+  }
+  
+  const express: Express;
+  const Router: () => Router;
+  
+  export { express, Router };
+  export default express;
+  export type Express = Application;
 }
 
 declare module 'cors' {
@@ -37,10 +57,11 @@ declare module 'cors' {
 
 declare module 'jsonwebtoken' {
   export function verify(token: string, secret: string): any;
-  export function sign(payload: any, secret: string): string;
+  export function sign(payload: any, secret: string, options?: any): string;
 }
 
 declare module 'bcryptjs' {
   export function compare(password: string, hash: string): Promise<boolean>;
-  export function hash(password: string, salt: number): Promise<string>;
+  export function hash(password: string, salt: string | number): Promise<string>;
+  export function genSalt(rounds?: number): Promise<string>;
 }

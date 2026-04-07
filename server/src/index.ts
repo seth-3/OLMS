@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -10,8 +10,8 @@ import quizRoutes from './routes/quizzes';
 
 dotenv.config();
 
-const app: Express = express();
-const PORT = process.env.PORT || 5000;
+const app = express();
+const PORT = Number(process.env.PORT) || 5000;
 
 // Middleware
 app.use(express.json({ limit: '50mb' }));
@@ -30,13 +30,13 @@ app.use('/api', assignmentRoutes);
 app.use('/api', quizRoutes);
 
 // Health check
-app.get('/health', (req: express.Request, res: express.Response) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'OK' });
 });
 
 // Catch all handler: send back React's index.html file for client-side routing
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req: express.Request, res: express.Response) => {
+  app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
   });
 }
