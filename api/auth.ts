@@ -4,12 +4,15 @@ import * as jwtUtils from './utils/jwt';
 import { connectDB } from './utils/db';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
   try {
+    if (req.method !== 'POST') {
+      return res.status(405).json({ message: 'Method not allowed' });
+    }
+
+    console.log('Auth request:', { method: req.method, url: req.url, body: req.body });
+
     await connectDB();
+    console.log('MongoDB connected');
 
     const { email, password, name, role } = req.body;
 
@@ -80,8 +83,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(404).json({ message: 'Endpoint not found' });
-  } catch (error) {
-    console.error('Auth error:', error);
-    return res.status(500).json({ message: 'Server error' });
+  } catch (error: any) {
+    console.error('Auth handler error:', error?.message || error);
+    return res.status(500).json({
+      message: 'Server error',
+      error: error?.message || String(error),
+    });
   }
 }
