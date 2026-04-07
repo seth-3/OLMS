@@ -1,0 +1,30 @@
+﻿src/App.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/ui/button.tsx(1,17): error TS1484: 'ButtonHTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/ui/card.tsx(1,17): error TS1484: 'HTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/ui/input.tsx(1,17): error TS1484: 'InputHTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/ui/label.tsx(1,17): error TS1484: 'LabelHTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/ui/textarea.tsx(1,17): error TS1484: 'TextareaHTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,10): error TS1484: 'Subject' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,19): error TS1484: 'Lesson' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,27): error TS1484: 'Assignment' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,39): error TS1484: 'Achievement' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,52): error TS1484: 'UserProgress' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/data/mock-data.ts(1,66): error TS1484: 'User' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/adminStore.ts(3,10): error TS1484: 'User' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/adminStore.ts(3,16): error TS1484: 'Department' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/adminStore.ts(3,28): error TS1484: 'SystemSettings' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/adminStore.ts(3,44): error TS1484: 'ActivityLog' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/assignmentStore.ts(3,10): error TS1484: 'Assignment' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/assignmentStore.ts(3,22): error TS1484: 'Submission' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/courseStore.ts(3,10): error TS1484: 'Course' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/courseStore.ts(3,18): error TS1484: 'Module' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/courseStore.ts(3,26): error TS1484: 'LearningMaterial' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/courseStore.ts(3,44): error TS1484: 'ClassSchedule' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/quizStore.ts(3,10): error TS1484: 'Quiz' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/quizStore.ts(3,16): error TS1484: 'QuizAttempt' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/quizStore.ts(3,29): error TS1484: 'Question' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/quizStore.ts(3,29): error TS6133: 'Question' is declared but its value is never read.
+src/store/studentTeacherStore.ts(3,10): error TS1484: 'UserProgress' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/studentTeacherStore.ts(3,24): error TS1484: 'Message' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/studentTeacherStore.ts(3,33): error TS1484: 'Attendance' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/store/studentTeacherStore.ts(3,45): error TS1484: 'Announcement' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
