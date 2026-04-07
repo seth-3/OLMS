@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "postbuild": "cd .. && npm run build && cd server && npx cpy-cli ../dist/** client --flat",
     "start": "node dist/index.js"
   },
   "dependencies": {
