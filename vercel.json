@@ -7,19 +7,39 @@
       "config": {
         "distDir": "dist"
       }
+    },
+    {
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/auth/(.*)",
+      "dest": "/api/auth.ts"
+    },
+    {
+      "src": "/api/courses/(.*)",
+      "dest": "/api/courses.ts"
+    },
+    {
+      "src": "/api/assignments/(.*)",
+      "dest": "/api/assignments.ts"
+    },
+    {
+      "src": "/api/quizzes/(.*)",
+      "dest": "/api/quizzes.ts"
+    },
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/dist/$1"
+      "dest": "/dist/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
