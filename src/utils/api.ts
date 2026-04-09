@@ -35,7 +35,13 @@ const apiCall = async (
     options.body = JSON.stringify(body);
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+  const fullUrl = `${API_BASE_URL}${endpoint}`;
+  console.log('API Call:', { fullUrl, method, body });
+
+  const response = await fetch(fullUrl, options);
+
+  console.log('Response status:', response.status, response.statusText);
+  console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
   if (!response.ok) {
     let errorMessage = 'API error';
@@ -46,6 +52,7 @@ const apiCall = async (
       // If response is not JSON, try to get text
       try {
         const errorText = await response.text();
+        console.log('Error response text:', errorText);
         errorMessage = errorText || errorMessage;
       } catch (textError) {
         errorMessage = `HTTP ${response.status}: ${response.statusText}`;
@@ -55,10 +62,13 @@ const apiCall = async (
   }
 
   try {
-    return await response.json();
+    const data = await response.json();
+    console.log('Success response data:', data);
+    return data;
   } catch (jsonError) {
     // If response is not JSON, return the text
     const text = await response.text();
+    console.log('Non-JSON response text:', text);
     // Try to parse as JSON if it looks like JSON
     try {
       return JSON.parse(text);
