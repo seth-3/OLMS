@@ -4,6 +4,9 @@ declare module 'express' {
     query: any;
     body: any;
     params: any;
+    method: string;
+    path: string;
+    url: string;
   }
   
   export interface Response {
@@ -42,17 +45,18 @@ declare module 'express' {
     static(path: string): any;
   }
   
+  interface CorsOptions {
+    origin?: string | string[];
+    credentials?: boolean;
+  }
+  
   const express: Express;
   const Router: () => Router;
+  const cors: (options?: CorsOptions) => any;
   
-  export { express, Router };
+  export { express, Router, cors };
   export default express;
   export type Express = Application;
-}
-
-declare module 'cors' {
-  const cors: () => (req: any, res: any, next: any) => void;
-  export = cors;
 }
 
 declare module 'jsonwebtoken' {
