@@ -38,11 +38,34 @@ const apiCall = async (
   const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'API error');
+    let errorMessage = 'API error';
+    try {
+      const error = await response.json();
+      errorMessage = error.message || errorMessage;
+    } catch (jsonError) {
+      // If response is not JSON, try to get text
+      try {
+        const errorText = await response.text();
+        errorMessage = errorText || errorMessage;
+      } catch (textError) {
+        errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+      }
+    }
+    throw new Error(errorMessage);
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch (jsonError) {
+    // If response is not JSON, return the text
+    const text = await response.text();
+    // Try to parse as JSON if it looks like JSON
+    try {
+      return JSON.parse(text);
+    } catch {
+      return { data: text };
+    }
+  }
 };
 
 // Auth APIs
